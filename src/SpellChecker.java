@@ -44,18 +44,41 @@ public class SpellChecker {
      * Instead of returning the index the word is found, it simply returns TRUE
      * if the word is found, and FALSE otherwise.
      */
-    public boolean binarySpellCheck(String word) {
-        /* IMPLEMENT ME! */
+    /** This uses BINARY search to find a word in the dictionary ArrayList and
+     * prints out the number of words checked.
+     *
+     * Instead of returning the index the word is found, it simply returns TRUE
+     * if the word is found, and FALSE otherwise.
+     */
+    public boolean binarySpellCheck(String word){
+        int numChecks = 0;
+        int left = 0;
+        int right = dictionary.size() -1;
 
-        return false; // STUB
+        while(left <= right) {
+            int middle = (left + right)/2;
+            numChecks++;
+
+            if(word.compareTo(dictionary.get(middle)) < 0) {
+                right = middle - 1;
+            } else if(word.compareTo(dictionary.get(middle)) > 0) {
+                left = middle + 1;
+            } else {
+                System.out.println("-- BINARY SEARCH: Number of words checked (loops/runtime): " + numChecks);
+                return true;
+            }
+        }
+        System.out.println("-- BINARY SEARCH: Number of words checked (loops/runtime): " + numChecks);
+        return false;
     }
+
 
     // private helper method, called in the constructor, which loads the words
     // from the dictionary.txt text file into the "dictionary" instance variable!
     private void importDictionary() {
         String[] tmp = null;
         try {
-            FileReader fileReader = new FileReader("src\\dictionary.txt");
+            FileReader fileReader = new FileReader("src//dictionary.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             ArrayList<String> lines = new ArrayList<String>();
             String line = null;

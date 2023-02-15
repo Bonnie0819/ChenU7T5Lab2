@@ -12,7 +12,7 @@ public class SpellCheckerTester {
         String word = scan.nextLine();
 
         while (!word.equals("q")) {
-            if (checker.linearSpellCheck(word)) {
+            if (checker.binarySpellCheck(word)) {
                 System.out.println("-- " + word + " WAS found (so it's a word spelled correctly!)");
             } else {
                 System.out.println("-- " + word + " was NOT found (did you spell it correctly?)");
